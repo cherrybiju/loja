@@ -1,0 +1,37 @@
+.background-cherry {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: #fff0f0; /* leve tom rosado só pra dar vibe */
+}
+
+/* cerejinhas caindo */
+.falling-cherry {
+  position: absolute;
+  top: -40px;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  border-radius: 50%;
+  object-fit: contain;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  will-change: transform;
+  filter: drop-shadow(0 0 2px rgba(215, 46, 46, 0.8));
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}

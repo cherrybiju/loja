@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Biju - Bijuteria Especializada em Brincos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="produtoscaindo.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cherry: '#e11d48',
+                        blossom: '#fecdd3',
+                        sakura: '#fbcfe8',
+                        biju: '#f0abfc',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff7fb 0%, #fef2f8 100%);
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(252, 231, 243, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+        }
+        
+        .cherry-blossom {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #fecdd3, #fbcfe8);
+            border-radius: 50% 50% 0 50%;
+            transform: rotate(45deg);
+            opacity: 0.7;
+            animation: float linear infinite;
+            z-index: 0;
+        }
+        
+        .cherry-logo {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cherry-logo::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fecdd3, transparent 70%);
+            z-index: -1;
+            animation: pulse-slow 3s infinite;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 25px 50px -12px rgba(225, 29, 72, 0.25);
+        }
+        
+        .earring-icon {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .floating-element {
+            animation: float 8s ease-in-out infinite;
+            animation-delay: calc(var(--delay) * 1s);
+        }
+        
+        .cherry-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23fecdd3' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .header-animation {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-animation::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 207, 232, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .cherry-spin {
+            animation: spin-slow 20s linear infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+
+
+
+
+</head>
+<link rel="stylesheet" href="produtos.css" />
+
+
+<body class="text-gray-700">
+
+<link rel="stylesheet" href="cerejas.css">
+<script src="cerejasprodutos.js"></script>
+
+    <!-- Header animado -->
+    <header class="fixed w-full z-50">
+        <div class="header-animation bg-white/90 backdrop-blur-sm py-4 px-6 shadow-md">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="cherry-logo mr-2">
+                        <div class="w-10 h-10 rounded-full bg-cherry flex items-center justify-center">
+                            <i class="fas fa-gem text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-cherry to-biju bg-clip-text text-transparent">
+                        CHERRY <span class="font-light">BIJU</span>
+                    </h1>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="font-medium hover:text-cherry transition-all relative group">
+                        Início
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cherry transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="font-medium hover:text-cherry transition-all relative group">
+                        Brincos
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cherry transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#brincos" class="font-medium hover:text-cherry transition-all relative group">
+                        Coleções
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cherry transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="index.html" class="font-medium hover:text-cherry transition-all relative group">
+                        Sobre
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cherry transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="https://wa.me/555599083794" class="font-medium hover:text-cherry transition-all relative group">
+                        Contato
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cherry transition-all group-hover:w-full"></span>
+                    </a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-full hover:bg-blossom transition-colors">
+                        <i class="fas fa-shopping-bag text-cherry"></i>
+                    </button>
+                    <button class="p-2 rounded-full hover:bg-blossom transition-colors">
+                        <i class="fas fa-search text-cherry"></i>
+                    </button>
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-blossom transition-colors">
+                        <i class="fas fa-bars text-cherry"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <!-- Carrinho (coloca aqui logo depois do header) -->
+    <button id="cart-btn" class="p-2 rounded-full hover:bg-blossom transition-colors relative">
+      <i class="fas fa-shopping-bag text-cherry"></i>
+      <span id="cart-count" class="absolute -top-1 -right-1 bg-cherry text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+    </button>
+
+    <div id="cart" class="hidden fixed top-16 right-4 w-80 bg-white shadow-lg rounded p-4 z-50">
+      <h2 class="font-bold text-cherry mb-4">Seu Carrinho</h2>
+      <ul id="cart-items" class="mb-4 max-h-48 overflow-auto"></ul>
+      <div class="font-semibold mb-4">Total: R$ <span id="cart-total">0.00</span></div>
+      <button id="close-cart" class="bg-cherry text-white px-4 py-2 rounded hover:bg-red-600 transition">Fechar</button>
+    </div>
+
+
+    <div style="height: 90px;"></div>
+
+<section class="produtos-intro bg-cherry-light py-12 px-6 text-center rounded-3xl max-w-4xl mx-auto mb-10 shadow-md">
+  <h1 class="text-4xl font-extrabold text-cherry mb-4">Nossa Coleção de Bijus</h1>
+  <p class="text-cherry-dark text-lg max-w-xl mx-auto">
+    Descubra acessórios únicos que combinam com seu estilo e personalidade. Cada peça é feita com carinho e pronta pra te acompanhar em todos os rolês — do casual ao mais babado. Bora brilhar?
+  </p>
+</section>
+
+
+
+<section id="brincos" class="products-container flex flex-wrap justify-center gap-8 px-4">
+  <!-- Produto 1 -->
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto">
+  <div class="relative h-80 overflow-hidden flex items-center justify-center bg-white">
+    <img
+      src="https://i.ibb.co/DfH9RPLG/IMG-20250612-WA0425.jpg"
+      alt="Cherry Heart"
+      style="
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 40px;
+        display: block;
+      "
+    />
+    <div
+      class="absolute bottom-4 right-4 bg-cherry text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md"
+    >
+      Mais Vendido
+    </div>
+  </div>
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-2">Cherry Heart</h3>
+    <p class="text-gray-600 mb-4">
+      Brincos em formato de coração que são puro charme! Perfeitos pra quem ama se destacar com delicadeza e muito amor. Um toque romântico que combina com qualquer look, do casual ao rolê mais babado.
+    </p>
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+     <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Cherry Heart"
+  data-price="6,90">
+  COMPRAR
+</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Produto 3 -->
+         
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg flex flex-col items-center max-w-sm mx-auto">
+  <!-- max-w-sm e mx-auto pra limitar largura e centralizar o card -->
+
+  <img
+    src="https://i.ibb.co/Q3PFLxLx/IMG-20250612-WA0452.jpg"
+    alt="Sweet Pulse"
+    style="width: 300px; height: 300px; object-fit: cover; border-radius: 40px; display: block; margin-top: 20px;"
+  />
+
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-bold mb-2">Sweet Pulse</h3>
+    <p class="text-gray-600 mb-4">
+      Brinco em formato de coração que pulsa estilo e delicadeza. Perfeito pra quem quer espalhar amor com aquele charme único, seja no rolê do dia a dia ou na night. Um toque doce que vai conquistar geral e fazer seu look bombar!
+    </p>
+
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+        <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Sweet Pulse"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center">
+  <img 
+    src="https://i.ibb.co/Z6CppFxZ/IMG-20250612-WA0457-1.jpg" 
+    alt="Brinco Alternativo" 
+    class="w-72 h-72 object-contain rounded-3xl mt-6"
+  />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-bold mb-2">Brinco Alternativo</h3>
+    <p class="text-gray-600 mb-4">Um toque diferente e cheio de estilo para quem quer ousar no visual.</p>
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+    <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Alternativo"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center">
+  <img 
+    src="https://i.ibb.co/3mwf6MQ4/IMG-20250612-WA0443.jpg" 
+    alt="Brinco Borboleta 2" 
+    class="w-72 h-72 object-contain rounded-3xl mt-6"
+  />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-bold mb-2">Brinco Borboleta 2</h3>
+    <p class="text-gray-600 mb-4">Delicado e leve, perfeito pra quem ama um estilo fresh e feminino.</p>
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+     <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Borboleta 2"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+    </div>
+  </div>
+</div>
+
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center">
+  <img
+    src="https://i.ibb.co/m3YWSJX/IMG-20250612-WA0438.jpg"
+    alt="Brinco Coração"
+    class="w-72 h-72 object-contain rounded-3xl mt-6"
+  />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-bold mb-2">Brinco Coração</h3>
+    <p class="text-gray-600 mb-4">Charme e delicadeza pra você arrasar em qualquer ocasião.</p>
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+     <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Coração"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+    </div>
+  </div>
+</div>
+
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center">
+  <img 
+    src="https://i.ibb.co/7drM4hdz/IMG-20250612-WA0458.jpg" 
+    alt="Brinco Caveira" 
+    class="w-72 h-72 object-contain rounded-3xl mt-6"
+  />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-bold mb-2">Brinco Caveira</h3>
+    <p class="text-gray-600 mb-4">Estilo underground com um toque de atitude pra arrasar no look.</p>
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+     <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Caveira"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+    </div>
+  </div>
+</div>
+
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center">
+  <img 
+    src="https://i.ibb.co/DPzkjFB6/IMG-20250612-WA0456.jpg" 
+    alt="Brinco Aranha" 
+     style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%;"
+  />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-bold mb-2">Brinco Aranha</h3>
+    <p class="text-gray-600 mb-4">Um toque ousado e diferente pra quem quer causar no visual.</p>
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+    <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Aranha"
+  data-price="6,90">
+  COMPRAR
+</button>
+</div>
+  </div>
+</div>
+
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center p-6">
+  <img 
+    src="https://i.ibb.co/bg5zgM1d/IMG-20250612-WA0428.jpg" 
+    alt="Brinco Redondo" 
+    style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%;"
+  />
+  <h3 class="text-xl font-bold mt-4 mb-2 text-center">Brinco Redondo</h3>
+  <p class="text-gray-600 mb-4 text-center">Peça delicada e versátil para qualquer ocasião.</p>
+  <div class="flex justify-between items-center w-full">
+    <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+    <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Redondo"
+  data-price="6,90">
+  COMPRAR
+</button>
+</div>
+  </div>
+</div>
+
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center p-6">
+  <img 
+    src="https://i.ibb.co/ZR6SNhtJ/IMG-20250612-WA0454.jpg" 
+    alt="Brinco Cogumelo" 
+    style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%;"
+  />
+  <h3 class="text-xl font-bold mt-4 mb-2 text-center">Brinco Cogumelo</h3>
+  <p class="text-gray-600 mb-4 text-center">Delicado e cheio de charme, perfeito pra quem curte um estilo único.</p>
+  <div class="flex justify-between items-center w-full">
+    <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+    <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Cogumelo"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+  </div>
+</div>
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center p-6">
+  <img 
+    src="https://i.ibb.co/jkytmHjy/IMG-20250612-WA0433.jpg" 
+    alt="Brinco Coração Dourado" 
+    style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%;"
+  />
+  <h3 class="text-xl font-bold mt-4 mb-2 text-center">Coração Dourado</h3>
+  <p class="text-gray-600 mb-4 text-center">Um toque de luxo e delicadeza pra destacar seu estilo.</p>
+  <div class="flex justify-between items-center w-full">
+    <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+    <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Coração Dourado"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+  </div>
+</div>
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center p-6">
+  <img 
+    src="https://i.ibb.co/pvH4kbvX/IMG-20250612-WA0468.jpg" 
+    alt="Brinco Borboleta Prata" 
+    style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%;"
+  />
+  <h3 class="text-xl font-bold mt-4 mb-2 text-center">Borboleta Prata</h3>
+  <p class="text-gray-600 mb-4 text-center">Leve, delicado e cheio de charme. Aquele toque que transforma qualquer look.</p>
+  <div class="flex justify-between items-center w-full">
+    <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+     <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Borboleta Prata"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+  </div>
+</div>
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center p-6">
+  <img 
+    src="https://i.ibb.co/Lhr5v5qc/IMG-20250612-WA0467.jpg" 
+    alt="Brinco Coração Prata" 
+    style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%;"
+  />
+  <h3 class="text-xl font-bold mt-4 mb-2 text-center">Coração Prata</h3>
+  <p class="text-gray-600 mb-4 text-center">Elegante e versátil, pra quem ama aquele brilho delicado no look.</p>
+  <div class="flex justify-between items-center w-full">
+    <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+       <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Coração Prata"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+  </div>
+</div>
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center p-6">
+  <img 
+    src="https://i.ibb.co/xq0JMjtK/IMG-20250612-WA0429-1.jpg" 
+    alt="Brinco Redondo Liso" 
+    style="width: 250px; height: 250px; object-fit: cover; border-radius: 40px;"
+  />
+  <h3 class="text-xl font-bold mt-4 mb-2 text-center">Brinco Redondo Liso</h3>
+  <p class="text-gray-600 mb-4 text-center">Simples, elegante e atemporal. Aquele brinco curinga que vai com TUDO!</p>
+  <div class="flex justify-between items-center w-full">
+    <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+    <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Redondo Liso"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+  </div>
+</div>
+<div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg max-w-sm mx-auto w-full sm:w-1/2 md:w-1/3 flex flex-col items-center p-6">
+  <img 
+    src="https://i.ibb.co/cKH5f54t/IMG-20250612-WA0460.jpg" 
+    alt="Brinco Borboleta" 
+    style="width: 250px; height: 250px; object-fit: cover; border-radius: 40px;"
+  />
+  <h3 class="text-xl font-bold mt-4 mb-2 text-center">Brinco Borboleta</h3>
+  <p class="text-gray-600 mb-4 text-center">Leve, delicado e cheio de charme. O toque perfeito pra quem ama detalhes que voam alto!</p>
+  <div class="flex justify-between items-center w-full">
+    <span class="text-lg font-bold text-cherry">R$ 6,90</span>
+    <button 
+  class="btn-whatsapp bg-blossom text-cherry px-4 py-2 rounded-full hover:bg-cherry hover:text-white transition-colors"
+  data-name="Brinco Borboleta"
+  data-price="6,90">
+  COMPRAR
+</button>
+
+  </div>
+</div>
+
+
+
+</section>
+
+
+<div style="height: 90px;"></div>
+
+
+     <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-full bg-cherry flex items-center justify-center mr-3">
+                            <i class="fas fa-gem text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">CHERRY <span class="font-light">BIJU</span></h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Bijuteria especializada em brincos únicos e de alta qualidade, criados para celebrar a beleza em cada detalhe.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-cherry transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-cherry transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-cherry transition-colors">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Links Rápidos</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Início</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Coleções</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Sobre Nós</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Categorias</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Brincos de Prata</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Brincos de Ouro</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Brincos Grandes</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Brincos Pequenos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Coleção Limitada</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">
+                        Inscreva-se para receber novidades e promoções exclusivas!
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Seu e-mail" class="px-4 py-2 rounded-l-full bg-gray-800 text-white w-full focus:outline-none">
+                        <button class="bg-cherry px-4 py-2 rounded-r-full hover:bg-pink-700 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 Cherry Biju. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante do WhatsApp -->
+    <a href="#" class="fixed bottom-6 right-6 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors z-40">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <script>
+        // Menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Criar flores de cerejeira caindo
+        function createCherryBlossom() {
+            const blossom = document.createElement('div');
+            blossom.classList.add('cherry-blossom');
+            
+            // Tamanho aleatório
+            const size = Math.random() * 15 + 5;
+            blossom.style.width = `${size}px`;
+            blossom.style.height = `${size}px`;
+            
+            // Posição inicial aleatória
+            blossom.style.left = `${Math.random() * 100}vw`;
+            
+            // Duração e atraso de animação
+            const duration = Math.random() * 5 + 5;
+            blossom.style.animationDuration = `${duration}s`;
+            blossom.style.animationDelay = `${Math.random() * 5}s`;
+            
+            document.body.appendChild(blossom);
+            
+            // Remover após a animação
+            setTimeout(() => {
+                blossom.remove();
+            }, duration * 1000);
+        }
+        
+        // Criar várias flores
+        setInterval(createCherryBlossom, 500);
+        
+        // Efeito de scroll no header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+                header.querySelector('.header-animation').classList.add('bg-white');
+                header.querySelector('.header-animation').classList.remove('bg-white/90');
+            } else {
+                header.classList.remove('shadow-lg');
+                header.querySelector('.header-animation').classList.remove('bg-white');
+                header.querySelector('.header-animation').classList.add('bg-white/90');
+            }
+        });
+
+
+
+
+    </script>
+
+<script src="cerejas.js"></script>
+<script src="ZAP.js"></script>
+
+
+</body>
+</html>

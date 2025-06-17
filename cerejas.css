@@ -1,0 +1,24 @@
+.cereja {
+    position: absolute;
+    top: -50px;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/766/766023.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: cair linear infinite;
+    z-index: 10;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+@keyframes cair {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}

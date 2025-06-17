@@ -1,0 +1,117 @@
+/* Container geral dos produtos */
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px; /* espaço entre cards */
+  padding: 1rem 1rem 3rem; /* espaçamento interno */
+}
+
+/* Card do produto */
+.product-card {
+  background: white;
+  border-radius: 1.25rem; /* 20px */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 384px; /* 24rem */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Imagem do produto */
+.product-card img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 40px;
+  margin-top: 1.25rem;
+}
+
+/* Conteúdo interno */
+.product-card .content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.product-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.product-card p {
+  color: #4A4A4A; /* cinza */
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+/* Preço e botão juntos */
+.product-card .footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-card .price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #D9425F; /* cherry red */
+}
+
+.product-card button {
+  background-color: #F9C1C1; /* blossom */
+  color: #D9425F; /* cherry */
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.product-card button:hover {
+  background-color: #D9425F;
+  color: white;
+}
+
+/* Badge “Mais Vendido” */
+.product-card .badge {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #D9425F;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-container {
+    grid-template-columns: 1fr;
+  }
+}
+
