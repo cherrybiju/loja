@@ -195,6 +195,20 @@
         </div>
     </header>
 
+
+
+<!-- Menu mobile lateral, fora do header -->
+<nav id="mobile-menu" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50 md:hidden">
+  <ul class="mt-20 p-6 space-y-6 font-bold text-cherry">
+    <li><a href="#" class="block hover:text-blossom">Início</a></li>
+    <li><a href="produtos.html" class="block hover:text-blossom">Brincos</a></li>
+    <li><a href="#colecao-brincos" class="block hover:text-blossom">Coleções</a></li>
+    <li><a href="#sobre" class="block hover:text-blossom">Sobre</a></li>
+    <li><a href="https://wa.me/555599083794" class="block hover:text-blossom">Contato</a></li>
+  </ul>
+</nav>
+
+
      <!-- Carrinho (coloca aqui logo depois do header) -->
     <button id="cart-btn" class="p-2 rounded-full hover:bg-blossom transition-colors relative">
       <i class="fas fa-shopping-bag text-cherry"></i>
@@ -604,7 +618,23 @@ Aqui, acessório não é só enfeite… é IDENTIDADE!
             }
         });
 
+<script>
+  const btnMobile = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
 
+  btnMobile.addEventListener('click', () => {
+    mobileMenu.classList.toggle('-translate-x-full');
+  });
+
+  // Fecha menu ao clicar fora (opcional)
+  window.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !btnMobile.contains(e.target)) {
+      if (!mobileMenu.classList.contains('-translate-x-full')) {
+        mobileMenu.classList.add('-translate-x-full');
+      }
+    }
+  });
+</script>
 
 
     </script>
